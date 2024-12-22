@@ -1,7 +1,8 @@
 import { features } from "../constants";
-const FeatureSection = () => {
+import { forwardRef } from "react";
+const FeatureSection = forwardRef((props, ref) => {
     return (
-    <div className="relative mt-20  min-h-[800r rpx]">
+    <div ref={ref} className="relative mt-20 py-10 min-h-[800r rpx]">
         <div className="text-center">
             <span className="bg-neutral-900 text-purple-500 rounded-full h-6 text-sm font-medium px-2 py-1 uppercase">
                 Why us
@@ -29,6 +30,6 @@ const FeatureSection = () => {
         </div>
     </div>
     );
-}
+});
 
 export default FeatureSection;
