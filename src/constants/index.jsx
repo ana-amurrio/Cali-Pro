@@ -9,22 +9,22 @@ export const navItems = [
 ];
 
 export const testimonials = [
-  {
-    user: "Igor B.",
-    text: "I am extremely satisfied with the services provided. The team was responsive and professional.",
-  },
+  // {
+  //   user: "Igor B.",
+  //   text: "I am extremely satisfied with the services provided. The team was responsive and professional.",
+  // },
   {
     user: "Andrea C.",
     text: "Unfortunate event made much better by offering a quick professional service! Thank you!",
   },
   {
-    user: "David J.",
-    text: "Can’t recommend them enough! Extremely impressed. They were professional, kind, and FAST.",
+    user: "Ana A.",
+    text: "Martin provided clear expectations and delivered great service.",
   },
-  {
-    user: "Indrig M.",
-    text: "Was able to replace window same day and only took an hr. Quick efficient service",
-  },
+  // {
+  //   user: "Indrig M.",
+  //   text: "Was able to replace window same day and only took an hr. Quick efficient service",
+  // },
 
 ];
 
@@ -63,7 +63,7 @@ export const checklistItems = [
   {
     title: "On-Site Service",
     description:
-      "Our expert technicians arrive at your location fully equipped to handle the repair or replacement. We work quickly and efficiently, ensuring minimal disruption to your day.",
+      "Our expert technicians arrive at your location fully equipped to handle the repair or replacement. We work quickly and efficiently, ensuring minimal disruption to your day",
   },
   {
     title: "Quick & Reliable Results",
