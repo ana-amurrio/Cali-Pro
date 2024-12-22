@@ -2,7 +2,7 @@ import {Menu, X} from "lucide-react"
 import { useState } from "react";
 import logo from '../assets/logo.png'
 import {navItems} from "../constants"
-export default  function Navbar(){
+export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRef}){
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
@@ -21,11 +21,9 @@ export default  function Navbar(){
           </div>
           {/* Nav links... show this when it's a large screen */}
           <ul className="hidden lg:flex ml-14 space-x-12">
-            {navItems.map((item, index) => (
-              <li key={index}>
-                <a href={item.href}>{item.label}</a>
-              </li>
-            ))}
+              <button onClick={handleWhyUs}>Why Us</button>
+              <button onClick={handleWorkFlowRef}>Workflow</button>
+              <button onClick={handleReviewsRef}>Testimonials</button>
           </ul>
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             <a href="#" className="bg-gradient-to-r from-purple-500 to-purple-800 py-2 px-3 rounded-md">Contact Us</a>
@@ -41,13 +39,11 @@ export default  function Navbar(){
           <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12
           flex flex-col justify center items-center lg:hidden">
             <ul>
-              {navItems.map((item,index) => 
-              <li key={index} className="py-4">
-                <a href={item.href}>{item.label}</a>
-              </li>
-              )}
+            <button className="py-4" onClick={handleWhyUs}>Why Us</button>
+              <li className="py-4">Workflow</li>
+              <li className="py-4">Testimonials</li>
             </ul>
-            <div className="flex space-x-6">
+            <div className="py-4 flex space-x-6">
               <a href="#" 
               className="py-2 px-3 rounded-md bg-gradient-to-r from-purple-500 to-purple-800"
               >Concast Us</a>

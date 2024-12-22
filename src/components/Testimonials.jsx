@@ -1,11 +1,12 @@
 import React from 'react'
 import { testimonials } from '../constants';
 import google from "../assets/google.png";
+import { forwardRef } from "react";
 
-const Testimonials = () => {
+const Testimonials = forwardRef((props, ref) => {
   return (
     // letter spacing wide
-    <div className='mt-10 tracking-wide'>
+    <div ref={ref} className='mt-10 tracking-wide'>
       <h2 className='text-3xl sm:text-5xl lg:text-6xl text-center my-10 lg:my-30'>What people are saying</h2>
       {/* testimonials */}
       <div className='flex flex-wrap justify-center mb-20'>
@@ -28,7 +29,7 @@ const Testimonials = () => {
       </div>
     </div>
   );
-}
+});
 
 export default Testimonials
 

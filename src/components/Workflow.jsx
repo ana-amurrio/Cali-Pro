@@ -1,10 +1,12 @@
 import { CheckCircle2 } from "lucide-react";
 import happy from "../assets/happy.jpg";
 import { checklistItems } from "../constants";
+import { forwardRef } from "react";
 
-const Workflow = () => {
+
+const Workflow = forwardRef((props, ref) => {
   return (
-    <div className="mt-20">
+    <div ref={ref} className="mt-20">
       <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center mt-6 tracking-wide">
       Your Stress-Free Auto Glass {" "}
         <span className="bg-gradient-to-r from-purple-500 to-purple-800 text-transparent bg-clip-text">
@@ -31,6 +33,6 @@ const Workflow = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Workflow;
