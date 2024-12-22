@@ -66,7 +66,7 @@ export const checklistItems = [
       "Our expert technicians arrive at your location fully equipped to handle the repair or replacement. We work quickly and efficiently, ensuring minimal disruption to your day.",
   },
   {
-    title: "Quick & Reliable Results:",
+    title: "Quick & Reliable Results",
     description:
       "We prioritize fast, high-quality work to get you back on the road safely. Our repairs are designed to last, using the best materials for long-term durability",
   },
