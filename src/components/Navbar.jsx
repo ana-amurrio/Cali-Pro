@@ -36,12 +36,11 @@ export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRe
           </div>
         </div>
         {mobileDrawerOpen && (
-          <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12
-          flex flex-col justify center items-center lg:hidden">
+          <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden">
             <ul>
-            <button className="py-4" onClick={handleWhyUs}>Why Us</button>
-              <li className="py-4">Workflow</li>
-              <li className="py-4">Testimonials</li>
+              <li><button className="py-4" onClick={handleWhyUs}>Why Us</button></li>
+              <li><button className="py-4" onClick={handleWorkFlowRef}>Workflow</button></li>
+              <li><button className="py-4" onClick={handleReviewsRef}>Testimonials</button></li>
             </ul>
             <div className="py-4 flex space-x-6">
               <a href="#" 
