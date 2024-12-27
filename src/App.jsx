@@ -3,6 +3,7 @@ import Intro from "./components/Intro";
 import FeatureSection from "./components/FeatureSection";
 import Workflow from "./components/Workflow";
 import Testimonials from "./components/Testimonials";
+import InterestForm from "./components/InterestForm";
 import { useRef } from "react";
 
 const App = () => {
@@ -33,6 +34,8 @@ const App = () => {
         <FeatureSection ref={whyUsRef}/>
         <Workflow ref={workFlowRef}/>
         <Testimonials ref={reviewsRef}/>
+
+        <InterestForm/>
       </div> 
     </>
   );
