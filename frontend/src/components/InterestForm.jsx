@@ -86,7 +86,7 @@ const InterestForm = () => {
   
       try {
         // Send form data to Flask backend via POST
-        const response = await fetch('http://18.223.105.200:5000/interest_form', {
+        const response = await fetch('https://git.heroku.com/messaging-to-discord.git', {
           method: 'POST', 
           headers: {
             'Content-Type': 'application/json', 
