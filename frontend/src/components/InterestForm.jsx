@@ -85,24 +85,21 @@ const InterestForm = () => {
     if (validateForm()) {
   
       try {
-        // Send form data to Flask backend via POST
         const response = await fetch('https://messaging-to-discord.herokuapp.com/interest_form', {
-          method: 'POST', 
+          method: 'POST',  // or 'GET' depending on your request type
           headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData), 
-        }).then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error('Error:', error));;
-  
-        // Handle response from Flask backend
-        if (response.ok) {
+          body: JSON.stringify(formData),  // Include your form data in the request body
+        });
+      
+        // Check if the response status code indicates success (2xx range)
+        if (response.status >= 200 && response.status < 300) {
           const result = await response.json();
           console.log('Form successfully submitted:', result);
-  
+      
           setFormSubmitted(true);
-          
+      
           setFormData({
             name: '',
             phone: '',
@@ -115,12 +112,15 @@ const InterestForm = () => {
             message: '',
           });
         } else {
+          // Handle non-2xx status codes (e.g., 4xx, 5xx)
           const error = await response.json();
           console.error('Error submitting form:', error);
         }
       } catch (error) {
+        // Handle any network or unexpected errors
         console.error('Error communicating with backend:', error);
       }
+      
     }
   };
   
