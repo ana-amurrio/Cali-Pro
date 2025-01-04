@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import img from "../assets/car.png"; // Ensure this path is correct
+import img from "../assets/car.png"; 
+import { forwardRef } from "react";
 
-    // if (!formData.email) {
-    //   newErrors.email = 'Email is required';
-    // } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    //   newErrors.email = 'Please enter a valid email address';
-    // }
-
-const InterestForm = () => {
+const InterestForm = forwardRef((props, ref) => {
     //tracks input
   const [formData, setFormData] = useState({
     name: '',
@@ -129,7 +124,7 @@ color:#7a6f76
 */
   
   return (
-    <div className="min-h-screen  text-white p-6 flex flex-col items-center justify-center rounded-lg shadow-[0px_0px_9px_2px_#E1BEE7]">
+    <div ref={ref} className="min-h-screen mb-20 text-white p-6 flex flex-col items-center justify-center rounded-lg shadow-[0px_0px_9px_2px_#E1BEE7]">
       {/* Heading at the top */}
       <h2 className="bg-neutral-900 mb-10 text-purple-500 rounded-full h-6 text-sm font-medium px-2 py-1 uppercase">Interest Form</h2>
       
@@ -293,6 +288,6 @@ color:#7a6f76
       </div>
     </div>
   );
-};
+});
 
 export default InterestForm;

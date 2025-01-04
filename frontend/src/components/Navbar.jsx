@@ -2,7 +2,7 @@ import {Menu, X} from "lucide-react"
 import { useState } from "react";
 import logo from '../assets/logo.png'
 import {navItems} from "../constants"
-export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRef}){
+export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRef, handleInterestRef}){
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
@@ -26,7 +26,7 @@ export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRe
               <button onClick={handleReviewsRef}>Testimonials</button>
           </ul>
           <div className="hidden lg:flex justify-center space-x-12 items-center">
-            <a href="#" className="bg-gradient-to-r from-purple-500 to-purple-800 py-2 px-3 rounded-md">Contact Us</a>
+            <button onClick={handleInterestRef} className="bg-gradient-to-r from-purple-500 to-purple-800 py-2 px-3 rounded-md">Contact Us</button>
           </div>
           {/* if large screen, hide. this is the navbar for phones*/}
           <div className="lg:hidden md:flex flex-col justify-end">
@@ -43,9 +43,10 @@ export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRe
               <li><button className="py-4" onClick={handleReviewsRef}>Testimonials</button></li>
             </ul>
             <div className="py-4 flex space-x-6">
-              <a href="#" 
+              <button  
               className="py-2 px-3 rounded-md bg-gradient-to-r from-purple-500 to-purple-800"
-              >Concast Us</a>
+              onClick={handleInterestRef}
+              >Concast Us</button>
             </div>
           </div>
         )}
