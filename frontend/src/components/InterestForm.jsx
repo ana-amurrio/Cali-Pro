@@ -85,7 +85,7 @@ const InterestForm = () => {
     if (validateForm()) {
   
       try {
-        const response = await fetch('https://messaging-to-discord.herokuapp.com/interest_form', {
+        const response = await fetch('https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/', {
           method: 'POST',  // or 'GET' depending on your request type
           headers: {
             'Content-Type': 'application/json',

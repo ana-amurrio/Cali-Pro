@@ -27,7 +27,7 @@ async def on_ready():
 
 async def send_message_to_channel(channel_id, message_body):
     channel = bot.get_channel(int(channel_id))
-
+    
     if channel is None:
         print(f"Channel with ID {channel_id} not found!")
         return
@@ -70,7 +70,8 @@ def trigger_discord_command():
     return jsonify({"status": "Command executed!"}), 200
 
 def run_flask():
-    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Default to 5000 for local testing
+    app.run(debug=False, use_reloader=False, host="0.0.0.0", port=port)
 
 async def main():
     flask_thread = Thread(target=run_flask)
