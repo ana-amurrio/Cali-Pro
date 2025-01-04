@@ -51,9 +51,7 @@ const InterestForm = () => {
     }
     if (!formData.phone) {
         newErrors.phone = 'Phone is required';
-      } else if(!validatePhoneNumber(formData.phone)){
-        newErrors.phone = 'Incorrect number';
-      }
+      } 
     if (!formData.city) {
         newErrors.city = 'City is required';
       }
@@ -86,14 +84,13 @@ const InterestForm = () => {
   
       try {
         const response = await fetch('https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form', {
-          method: 'POST',  // or 'GET' depending on your request type
+          method: 'POST',  
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData),  // Include your form data in the request body
+          body: JSON.stringify(formData),  
         });
       
-        // Check if the response status code indicates success (2xx range)
         if (response.status >= 200 && response.status < 300) {
           const result = await response.json();
           console.log('Form successfully submitted:', result);
@@ -112,23 +109,16 @@ const InterestForm = () => {
             message: '',
           });
         } else {
-          // Handle non-2xx status codes (e.g., 4xx, 5xx)
           const error = await response.json();
           console.error('Error submitting form:', error);
         }
       } catch (error) {
-        // Handle any network or unexpected errors
         console.error('Error communicating with backend:', error);
       }
       
     }
   };
   
-  const validatePhoneNumber = (phoneNumber) => {
-    // Regex to validate format: 123-457-8901
-    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-    return phoneRegex.test(phoneNumber);
-  };
 /* 
 use state to track inputs 
 use state to check for errors
@@ -181,7 +171,7 @@ color:#7a6f76
               <input
                 type="tel"
                 id="phone"
-                placeholder="123-4567-8901"
+                placeholder="4151234567"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
