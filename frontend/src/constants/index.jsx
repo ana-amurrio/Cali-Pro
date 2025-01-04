@@ -51,7 +51,7 @@ export const features = [
 
 export const checklistItems = [
   {
-    title: "Call Us",
+    title: "Complete Interst Form and Call Us",
     description:
       "Reach out for a free, no-obligation estimate. We’ll assess the damage and give you a clear, upfront price",
   },
