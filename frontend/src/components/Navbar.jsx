@@ -1,7 +1,6 @@
 import {Menu, X} from "lucide-react"
 import { useState } from "react";
 import logo from '../assets/logo.png'
-import {navItems} from "../constants"
 export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRef, handleInterestRef}){
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -38,14 +37,17 @@ export default  function Navbar({handleWhyUs, handleWorkFlowRef, handleReviewsRe
         {mobileDrawerOpen && (
           <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden">
             <ul>
-              <li><button className="py-4" onClick={handleWhyUs}>Why Us</button></li>
-              <li><button className="py-4" onClick={handleWorkFlowRef}>Workflow</button></li>
-              <li><button className="py-4" onClick={handleReviewsRef}>Testimonials</button></li>
+              <li><button className="py-4" onClick={() => {handleWhyUs(); toggleNavbar();}}>Why Us</button></li>
+              <li><button className="py-4" onClick={() => {handleWorkFlowRef(); toggleNavbar();}}>Workflow</button></li>
+              <li><button className="py-4" onClick={() => {handleReviewsRef(); toggleNavbar();}}>Testimonials</button></li>
             </ul>
             <div className="py-4 flex space-x-6">
               <button  
               className="py-2 px-3 rounded-md bg-gradient-to-r from-purple-500 to-purple-800"
-              onClick={handleInterestRef}
+              onClick={() => { 
+                handleInterestRef(); 
+                toggleNavbar();
+              }}
               >Concast Us</button>
             </div>
           </div>
