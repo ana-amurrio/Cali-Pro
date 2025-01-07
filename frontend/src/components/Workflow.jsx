@@ -14,8 +14,8 @@ const Workflow = forwardRef((props, ref) => {
         </span>
       </h2>
       <div className="flex flex-wrap justify-center">
-        <div className="p-2 mt-4 w-full lg:w-1/3">
-          <img src={happy} alt="Coding" />
+        <div className="p-2 mt-4 w-full lg:w-1/3 ">
+          <img src={happy} className="w-1/3 sm:w-1/3 lg:w-full mx-auto" />
         </div>
         <div className="pt-12 w-full lg:w-1/2">
           {checklistItems.map((item, index) => (
