@@ -9,10 +9,6 @@ export const navItems = [
 ];
 
 export const testimonials = [
-  // {
-  //   user: "Igor B.",
-  //   text: "I am extremely satisfied with the services provided. The team was responsive and professional.",
-  // },
   {
     user: "Andrea C.",
     text: "Unfortunate event made much better by offering a quick professional service! Thank you!",
@@ -21,11 +17,6 @@ export const testimonials = [
     user: "Ana A.",
     text: "Martin provided clear expectations and delivered great service.",
   },
-  // {
-  //   user: "Indrig M.",
-  //   text: "Was able to replace window same day and only took an hr. Quick efficient service",
-  // },
-
 ];
 
 export const features = [
@@ -53,7 +44,7 @@ export const checklistItems = [
   {
     title: "Complete Interst Form and Call Us",
     description:
-      "Reach out for a free, no-obligation estimate. We’ll assess the damage and give you a clear, upfront price",
+      "Reach out for a free, no-obligation estimate at (628) 588-4266. We’ll assess the damage and give you a clear, upfront price",
   },
   {
     title: "Scheduling",

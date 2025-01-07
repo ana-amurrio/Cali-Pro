@@ -22,9 +22,6 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)  
 
 @bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user}')
-
 async def send_message_to_channel(channel_id, message_body):
     channel = bot.get_channel(int(channel_id))
     

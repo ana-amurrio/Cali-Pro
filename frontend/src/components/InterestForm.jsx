@@ -120,15 +120,13 @@ use state to check for errors
 function to transfer input into states
 function to validate info 
 function to handle submittion and reset data
-color:#7a6f76
 */
   
   return (
-    <div ref={ref} className="min-h-screen mb-20 text-white p-6 flex flex-col items-center justify-center rounded-lg shadow-[0px_0px_9px_2px_#E1BEE7]">
-      {/* Heading at the top */}
+    <div ref={ref} className="min-h-screen mb-20 text-white p-6 flex flex-col items-center justify-center rounded-lg shadow-[0px_0px_9px_2px_#7a6f76]">
       <h2 className="bg-neutral-900 mb-10 text-purple-500 rounded-full h-6 text-sm font-medium px-2 py-1 uppercase">Interest Form</h2>
+      <h3 className='text-lg font-medium mb-10'>Call Us: (628) 588-4266</h3>
       
-      {/* Image below the heading */}
       <div className="w-full lg:w-1/2 mt-6">
         <img
           src={img}
@@ -137,7 +135,6 @@ color:#7a6f76
         />
       </div>
 
-      {/* Form section below the image with glowing border */}
       <div className="max-w-7xl mx-auto flex flex-col w-full lg:w-1/2 mt-6 p-6">
         {formSubmitted ? (
           <div className="text-center text-purple-400">
