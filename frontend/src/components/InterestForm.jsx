@@ -77,21 +77,24 @@ const InterestForm = forwardRef((props, ref) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submit clicked");
-    console.log("Turnstile token:", turnstileToken);
-    console.log("Form data:", formData);
-
+    if (!turnstileToken) {
+      alert("Please complete the security check before submitting.");
+      return;
+    }
   
     if (validateForm()) {
   
       try {
         const response = await fetch("https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(formData),
-});
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+            body: JSON.stringify({
+            ...formData,
+            turnstileToken,
+          }),
+        });
       
         if (response.status >= 200 && response.status < 300) {
           const result = await response.json();
@@ -290,21 +293,13 @@ function to handle submittion and reset data
               autoComplete="off"
             />
 
-            <Turnstile
-  sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-  onVerify={(token) => {
-    console.log("Turnstile verified:", token);
-    setTurnstileToken(token);
-  }}
-  onError={() => {
-    console.log("Turnstile error");
-    setTurnstileToken("");
-  }}
-  onExpire={() => {
-    console.log("Turnstile expired");
-    setTurnstileToken("");
-  }}
-/>
+        <Turnstile
+          sitekey="YOUR_SITE_KEY"
+          onVerify={(token) => {
+            console.log("Turnstile verified:", token);
+            setTurnstileToken(token);
+          }}
+        />
             <button
   type="submit"
   onClick={() => console.log("Button clicked")}
