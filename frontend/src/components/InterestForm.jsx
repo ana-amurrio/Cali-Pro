@@ -73,6 +73,8 @@ const InterestForm = forwardRef((props, ref) => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // No errors
   };
+  console.log("Turnstile site key:", import.meta.env.VITE_TURNSTILE_SITE_KEY);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -293,13 +295,23 @@ function to handle submittion and reset data
               autoComplete="off"
             />
 
-        <Turnstile
-          sitekey="YOUR_SITE_KEY"
-          onVerify={(token) => {
-            console.log("Turnstile verified:", token);
-            setTurnstileToken(token);
-          }}
-        />
+        <div className="my-6 flex justify-center">
+  <Turnstile
+    sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+    onVerify={(token) => {
+      console.log("Turnstile verified:", token);
+      setTurnstileToken(token);
+    }}
+    onError={() => {
+      console.log("Turnstile error");
+      setTurnstileToken("");
+    }}
+    onExpire={() => {
+      console.log("Turnstile expired");
+      setTurnstileToken("");
+    }}
+  />
+</div>
             <button
   type="submit"
   onClick={() => console.log("Button clicked")}
