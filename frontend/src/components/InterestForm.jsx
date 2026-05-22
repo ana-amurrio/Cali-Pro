@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import img from "../assets/car.png"; 
-import { forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
+import img from "../assets/car.png";
+import Turnstile from "react-turnstile";
 
 const InterestForm = forwardRef((props, ref) => {
     //tracks input
@@ -14,6 +14,7 @@ const InterestForm = forwardRef((props, ref) => {
     body: '',
     service: '',
     message: '',
+    website: '',
   });
 
   //checks error e.g client leaves empty items
@@ -29,6 +30,7 @@ const InterestForm = forwardRef((props, ref) => {
 
   //check submittion
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target; //destruct format into inputs
@@ -74,17 +76,22 @@ const InterestForm = forwardRef((props, ref) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("Submit clicked");
+    console.log("Turnstile token:", turnstileToken);
+    console.log("Form data:", formData);
+
   
     if (validateForm()) {
   
       try {
-        const response = await fetch('https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form', {
-          method: 'POST',  
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),  
-        });
+        const response = await fetch("https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(formData),
+});
       
         if (response.status >= 200 && response.status < 300) {
           const result = await response.json();
@@ -273,13 +280,38 @@ function to handle submittion and reset data
               ></textarea>
             </div>
             
+              <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              style={{ display: "none" }}
+              tabIndex="-1"
+              autoComplete="off"
+            />
 
+            <Turnstile
+  sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+  onVerify={(token) => {
+    console.log("Turnstile verified:", token);
+    setTurnstileToken(token);
+  }}
+  onError={() => {
+    console.log("Turnstile error");
+    setTurnstileToken("");
+  }}
+  onExpire={() => {
+    console.log("Turnstile expired");
+    setTurnstileToken("");
+  }}
+/>
             <button
-              type="submit"
-              className="w-full py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              Submit
-            </button>
+  type="submit"
+  onClick={() => console.log("Button clicked")}
+  className="w-full py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+>
+  Submit
+</button>
           </form>
         )}
       </div>
