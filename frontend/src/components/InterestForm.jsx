@@ -16,7 +16,6 @@ const InterestForm = forwardRef((props, ref) => {
     website: "",
   });
 
-  // Checks errors, e.g. client leaves empty items
   const [errors, setErrors] = useState({
     name: "",
     phone: "",
@@ -28,7 +27,6 @@ const InterestForm = forwardRef((props, ref) => {
     service: "",
   });
 
-  // Checks submission
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [submitMessage, setSubmitMessage] = useState("");
@@ -109,26 +107,42 @@ const InterestForm = forwardRef((props, ref) => {
       setIsSubmitting(true);
 
       const payload = {
-  ...formData,
-  "cf-turnstile-response": turnstileToken,
-};
+        ...formData,
+        "cf-turnstile-response": turnstileToken,
+      };
 
-    console.log("Payload being sent to backend:", payload);
+      console.log("Payload being sent to backend:", payload);
 
-    const response = await fetch(
-      "https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      }
-    );
+      const response = await fetch(
+        "https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       console.log("Backend response status:", response.status);
 
-      const result = await response.json();
+      const contentType = response.headers.get("content-type");
+
+      let result = {};
+
+      if (contentType && contentType.includes("application/json")) {
+        result = await response.json();
+      } else {
+        const text = await response.text();
+        console.error("Backend returned non-JSON response:", text);
+
+        setSubmitMessage(
+          `Backend error ${response.status}. Check Heroku logs for the real backend error.`
+        );
+
+        return;
+      }
+
       console.log("Backend response body:", result);
 
       if (response.ok) {
@@ -412,21 +426,21 @@ const InterestForm = forwardRef((props, ref) => {
             />
 
             <div className="my-6 flex justify-center">
-                <Turnstile
-                  sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                  onVerify={(token) => {
-                    console.log("Turnstile verified token:", token);
-                    setTurnstileToken(token);
-                  }}
-                  onError={() => {
-                    console.log("Turnstile error");
-                    setTurnstileToken("");
-                  }}
-                  onExpire={() => {
-                    console.log("Turnstile expired");
-                    setTurnstileToken("");
-                  }}
-                />
+              <Turnstile
+                sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                onVerify={(token) => {
+                  console.log("Turnstile verified token:", token);
+                  setTurnstileToken(token);
+                }}
+                onError={() => {
+                  console.log("Turnstile error");
+                  setTurnstileToken("");
+                }}
+                onExpire={() => {
+                  console.log("Turnstile expired");
+                  setTurnstileToken("");
+                }}
+              />
             </div>
 
             {submitMessage && (
