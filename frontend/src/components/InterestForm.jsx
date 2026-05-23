@@ -408,21 +408,21 @@ const InterestForm = forwardRef((props, ref) => {
             />
 
             <div className="my-6 flex justify-center">
-              <Turnstile
-                sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                onVerify={(token) => {
-                  console.log("Turnstile verified:", token);
-                  setTurnstileToken(token);
-                }}
-                onError={() => {
-                  console.log("Turnstile error");
-                  setTurnstileToken("");
-                }}
-                onExpire={() => {
-                  console.log("Turnstile expired");
-                  setTurnstileToken("");
-                }}
-              />
+                <Turnstile
+                  sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                  onVerify={(token) => {
+                    console.log("Turnstile verified token:", token);
+                    setTurnstileToken(token);
+                  }}
+                  onError={() => {
+                    console.log("Turnstile error");
+                    setTurnstileToken("");
+                  }}
+                  onExpire={() => {
+                    console.log("Turnstile expired");
+                    setTurnstileToken("");
+                  }}
+                />
             </div>
 
             {submitMessage && (
