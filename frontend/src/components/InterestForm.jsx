@@ -117,7 +117,7 @@ const InterestForm = forwardRef((props, ref) => {
           },
           body: JSON.stringify({
             ...formData,
-            turnstileToken,
+            "cf-turnstile-response": turnstileToken,
           }),
         }
       );
