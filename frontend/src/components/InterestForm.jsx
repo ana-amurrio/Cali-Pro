@@ -108,19 +108,23 @@ const InterestForm = forwardRef((props, ref) => {
     try {
       setIsSubmitting(true);
 
-      const response = await fetch(
-        "https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            "cf-turnstile-response": turnstileToken,
-          }),
-        }
-      );
+      const payload = {
+  ...formData,
+  "cf-turnstile-response": turnstileToken,
+};
+
+    console.log("Payload being sent to backend:", payload);
+
+    const response = await fetch(
+      "https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
 
       console.log("Backend response status:", response.status);
 
