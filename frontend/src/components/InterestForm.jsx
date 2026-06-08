@@ -1,6 +1,10 @@
-import React, { useState, forwardRef } from "react";
+import { useState, forwardRef } from "react";
 import img from "../assets/car.png";
 import Turnstile from "react-turnstile";
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://messaging-to-discord-3ff6062d6c6f.herokuapp.com";
 
 const InterestForm = forwardRef((props, ref) => {
   const [formData, setFormData] = useState({
@@ -31,8 +35,6 @@ const InterestForm = forwardRef((props, ref) => {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [submitMessage, setSubmitMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  console.log("Turnstile site key:", import.meta.env.VITE_TURNSTILE_SITE_KEY);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -111,10 +113,8 @@ const InterestForm = forwardRef((props, ref) => {
         "cf-turnstile-response": turnstileToken,
       };
 
-      console.log("Payload being sent to backend:", payload);
-
       const response = await fetch(
-        "https://messaging-to-discord-3ff6062d6c6f.herokuapp.com/interest_form",
+        `${API_BASE_URL.replace(/\/$/, "")}/interest_form`,
         {
           method: "POST",
           headers: {
@@ -198,7 +198,7 @@ const InterestForm = forwardRef((props, ref) => {
         {formSubmitted ? (
           <div className="text-center text-purple-400">
             <h3 className="text-xl">
-              Thank you for your interest! We'll be in touch soon.
+              Thank you for your interest! We&apos;ll be in touch soon.
             </h3>
           </div>
         ) : (
@@ -462,5 +462,7 @@ const InterestForm = forwardRef((props, ref) => {
     </div>
   );
 });
+
+InterestForm.displayName = "InterestForm";
 
 export default InterestForm;
