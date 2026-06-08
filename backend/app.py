@@ -17,9 +17,6 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN") or os.getenv("BOT_TOKEN")
 CHANNEL_ID = os.getenv("CHANNEL_ID")
 TURNSTILE_SECRET_KEY = os.getenv("TURNSTILE_SECRET_KEY")
 
-if not DISCORD_TOKEN:
-    raise RuntimeError("Missing DISCORD_TOKEN or BOT_TOKEN environment variable")
-
 if not CHANNEL_ID:
     raise RuntimeError("Missing CHANNEL_ID environment variable")
 
@@ -71,7 +68,10 @@ def run_bot():
         print("Discord bot failed to start:", e)
 
 
-threading.Thread(target=run_bot, daemon=True).start()
+if DISCORD_TOKEN:
+    threading.Thread(target=run_bot, daemon=True).start()
+else:
+    print("Discord bot not started: missing DISCORD_TOKEN or BOT_TOKEN")
 
 
 @app.route("/", methods=["GET"])
@@ -139,6 +139,9 @@ def interest_form():
             "error": "You have missing information",
             "missing_fields": missing_fields
         }), 400
+
+    if not DISCORD_TOKEN:
+        return jsonify({"error": "Discord is not configured on the server"}), 500
 
     if not bot_ready.is_set() or bot_loop is None:
         return jsonify({"error": "Discord bot is not ready yet"}), 503
